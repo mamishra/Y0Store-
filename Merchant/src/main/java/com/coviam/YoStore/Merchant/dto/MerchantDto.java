@@ -1,13 +1,6 @@
 package com.coviam.YoStore.Merchant.dto;
 
-<<<<<<< Updated upstream
-public class MerchantDto {
-=======
 import com.coviam.YoStore.Merchant.entity.Products;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class MerchantDto {
@@ -51,5 +44,4 @@ public class MerchantDto {
         this.products = products;
     }
 
->>>>>>> Stashed changes
 }

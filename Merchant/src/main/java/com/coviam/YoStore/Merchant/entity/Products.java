@@ -1,8 +1,7 @@
 package com.coviam.YoStore.Merchant.entity;
 
 public class Products {
-<<<<<<< Updated upstream
-=======
+
     private String productId;
     private int discount;
     private int quantity;
@@ -39,5 +38,4 @@ public class Products {
     public void setOffer(String offer) {
         this.offer = offer;
     }
->>>>>>> Stashed changes
 }

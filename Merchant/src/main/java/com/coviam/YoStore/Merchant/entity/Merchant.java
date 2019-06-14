@@ -1,13 +1,7 @@
 package com.coviam.YoStore.Merchant.entity;
 
-<<<<<<< Updated upstream
-public class Merchant {
-=======
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +29,6 @@ public class Merchant {
 
      }
 
-
-
-
     public String getCategory() {
         return category;
     }
@@ -57,7 +48,4 @@ public class Merchant {
         return products;
     }
 
-
-
->>>>>>> Stashed changes
 }
