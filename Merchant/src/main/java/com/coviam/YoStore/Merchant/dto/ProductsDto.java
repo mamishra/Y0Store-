@@ -1,9 +1,5 @@
 package com.coviam.YoStore.Merchant.dto;
 
-<<<<<<< Updated upstream
-public class ProductsDto {
-=======
-
 public class ProductsDto {
     private String productId;
     private int discount;
@@ -41,5 +37,4 @@ public class ProductsDto {
     public void setOffer(String offer) {
         this.offer = offer;
     }
->>>>>>> Stashed changes
 }
