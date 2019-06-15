@@ -38,7 +38,9 @@ public class MerchantController {
     public  ResponseEntity<Merchant> getMerchant(@PathVariable("marchantId") String merchantId){
         Merchant merchant= merchantServices.findOne(merchantId);
         MerchantDto merchantDto=merchantServices.findOne(merchantId);
-        if(merchant==null)
+        if(merchant==null){
+
+        }
     }
 
 }
