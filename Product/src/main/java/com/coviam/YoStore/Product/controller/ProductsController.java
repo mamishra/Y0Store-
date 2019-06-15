@@ -28,11 +28,11 @@ public class ProductsController {
         return new ResponseEntity<ProductsDto>(productsDto,HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST,value= "/updateProduct/{sku}/{quantitySold}/{merchantId}")
-    public ResponseEntity<?> uodateP
-    {
-
-    }
+//    @RequestMapping(method = RequestMethod.POST,value= "/updateProduct/{sku}/{quantitySold}/{merchantId}")
+//    public ResponseEntity<?> uodateP
+//    {
+//
+//    }
 
 
 }
