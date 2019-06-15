@@ -1,6 +1,7 @@
-package com.coviam.YoStore.Merchant.dto;
+package com.coviam.YoStore.Merchant.entity;
 
-public class ProductsDto {
+public class MerchantProducts {
+
     private String productId;
     private int discount;
     private int quantity;

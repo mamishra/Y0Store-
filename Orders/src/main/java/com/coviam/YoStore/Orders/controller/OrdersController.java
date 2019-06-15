@@ -2,9 +2,7 @@ package com.coviam.YoStore.Orders.controller;
 
 import com.coviam.YoStore.Orders.dto.OrdersDto;
 import com.coviam.YoStore.Orders.entity.Orders;
-import com.coviam.YoStore.Orders.repository.OrdersRepository;
 import com.coviam.YoStore.Orders.service.OrdersService;
-import com.sun.tools.corba.se.idl.constExpr.Or;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,13 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/orders")
 public class OrdersController {
 
     @Autowired
     OrdersService ordersService;
 
     @RequestMapping(method = RequestMethod.POST, value = "/putOrders")
-    public ResponseEntity<?> putOrders(@RequestBody Orders ordersDto)
+    public ResponseEntity<?> putOrders(@RequestBody OrdersDto ordersDto)
     {
         Orders orders = new Orders();
         BeanUtils.copyProperties(ordersDto, orders);
@@ -28,8 +27,8 @@ public class OrdersController {
         return new ResponseEntity<Orders>(orders, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/getByUserId/{userId}")
-    public ResponseEntity<List<Orders>> getByUserId(@PathVariable ("userId") String userId)
+    @RequestMapping(method = RequestMethod.GET, value = "/getOrdersByUserId/{userId}")
+    public ResponseEntity<List<Orders>> getOrdersByUserId(@PathVariable ("userId") String userId)
     {
         List<Orders> orders = ordersService.findByUserId(userId);
         OrdersDto ordersDto=new OrdersDto();
@@ -41,7 +40,7 @@ public class OrdersController {
         return new ResponseEntity<List<Orders>>(orders, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/getAll")
+    @RequestMapping(method = RequestMethod.GET, value = "/getAllOrders")
     public ResponseEntity<List<Orders>> getAll()
     {
         List<Orders> orders=ordersService.findAll();
