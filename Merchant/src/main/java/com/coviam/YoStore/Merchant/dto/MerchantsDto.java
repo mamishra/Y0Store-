@@ -1,16 +1,16 @@
 package com.coviam.YoStore.Merchant.dto;
 
-import com.coviam.YoStore.Merchant.entity.Products;
+import com.coviam.YoStore.Merchant.entity.MerchantProducts;
 import java.util.List;
 
-public class MerchantDto {
+public class MerchantsDto {
 
 
     private String MerchantID;
 
     private String category;
     private  int rating;
-    private List<Products> products;
+    private List<MerchantProducts> merchantProducts;
 
     public String getMerchantID() {
         return MerchantID;
@@ -36,12 +36,12 @@ public class MerchantDto {
         this.rating = rating;
     }
 
-    public List<Products> getProducts() {
-        return products;
+    public List<MerchantProducts> getProducts() {
+        return merchantProducts;
     }
 
-    public void setProducts(List<Products> products) {
-        this.products = products;
+    public void setProducts(List<MerchantProducts> products) {
+        this.merchantProducts = products;
     }
 
 }
