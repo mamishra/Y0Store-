@@ -40,8 +40,10 @@ public class MerchantsController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = "/getRating/{merchantId}")
-    public ResponseEntity<Integer> getRating(@PathVariable("merchantId") String merchantId){
+
+
+    @RequestMapping(method = RequestMethod.GET,value = "/getMerchantRating/{merchantId}")
+    public ResponseEntity<Integer> getMerchantRating(@PathVariable("merchantId") String merchantId){
         Merchants merchants = merchantsServices.findOne(merchantId);
         MerchantsDto merchantsDto =new MerchantsDto();
         if(merchants ==null)

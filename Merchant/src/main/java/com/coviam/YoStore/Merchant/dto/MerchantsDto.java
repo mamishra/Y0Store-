@@ -10,7 +10,16 @@ public class MerchantsDto {
 
     private String category;
     private  int rating;
+    private int quantitySold;
     private List<MerchantProducts> merchantProducts;
+
+    public int getQuantitySold() {
+        return quantitySold;
+    }
+
+    public void setQuantitySold(int quantitySold) {
+        this.quantitySold = quantitySold;
+    }
 
     public String getMerchantID() {
         return MerchantID;
