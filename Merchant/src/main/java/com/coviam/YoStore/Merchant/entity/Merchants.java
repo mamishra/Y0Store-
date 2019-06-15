@@ -16,20 +16,30 @@ public class Merchants {
     @Field
     private String category;
     private int rating;
+    private int quantitySold;
     private List<MerchantProducts> merchantProducts;
 
     public Merchants(){
         this.merchantProducts=new ArrayList<>();
     }
 
-    public Merchants(String merchantID, String category, int rating, List<MerchantProducts> products )
+    public Merchants(String merchantID, String category, int rating, List<MerchantProducts> products, int quantitySold)
      {
          this.merchantID = merchantID;
          this.category=category;
          this.rating=rating;
+         this.quantitySold = quantitySold;
          this.merchantProducts=products;
 
      }
+
+    public int getQuantitySold() {
+        return quantitySold;
+    }
+
+    public void setQuantitySold(int quantitySold) {
+        this.quantitySold = quantitySold;
+    }
 
     public String getCategory() {
         return category;
