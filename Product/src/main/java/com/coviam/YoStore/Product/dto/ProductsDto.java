@@ -1,17 +1,28 @@
 package com.coviam.YoStore.Product.dto;
 
-import com.coviam.YoStore.Product.entity.ProductDetails;
 import com.coviam.YoStore.Product.entity.ProductMerchants;
 
 import java.util.List;
 
 public class ProductsDto {
 
-    private String SKU;
+    private String sku;
     private double mrp;
     private String brand;
     private String imgurl;
     private List<ProductMerchants>  productMerchants;
+    private int quantity;
+    private String category;
+    private String  productDetails;
+    private String productName;
+
+    public String getProductDetails() {
+        return productDetails;
+    }
+
+    public void setProductDetails(String productDetails) {
+        this.productDetails = productDetails;
+    }
 
     public List<ProductMerchants> getProductMerchants() {
         return productMerchants;
@@ -21,18 +32,12 @@ public class ProductsDto {
         this.productMerchants = productMerchants;
     }
 
-    private int quantity;
-
-    private String category;
-    private ProductDetails productDetails;
-    private String productName;
-
-    public String getSKU() {
-        return SKU;
+    public String getsku() {
+        return sku;
     }
 
-    public void setSKU(String SKU) {
-        this.SKU = SKU;
+    public void setsku(String sku) {
+        this.sku = sku;
     }
 
     public double getMrp() {
@@ -75,14 +80,6 @@ public class ProductsDto {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public ProductDetails getProductDetails() {
-        return productDetails;
-    }
-
-    public void setProductDetails(ProductDetails productDetails) {
-        this.productDetails = productDetails;
     }
 
     public String getProductName() {
