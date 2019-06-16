@@ -2,6 +2,7 @@ package com.coviam.YoStore.Cart.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -11,15 +12,26 @@ import java.util.List;
 public class UserCart {
 
     @Id
-    private long cartId;
+    private String cartId;
+
+    @Field
     private BigDecimal cartPrice;
     private List<CartDetails> details;
+    private String userId;
 
-    public long getCartId() {
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getCartId() {
         return cartId;
     }
 
-    public void setCartId(long cartId) {
+    public void setCartId(String cartId) {
         this.cartId = cartId;
     }
 
@@ -41,10 +53,11 @@ public class UserCart {
 
     @Override
     public String toString() {
-        return "UserCartDto{" +
-                "cartId=" + cartId +
+        return "UserCart{" +
+                "cartId='" + cartId + '\'' +
                 ", cartPrice=" + cartPrice +
                 ", details=" + details +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 
@@ -52,8 +65,10 @@ public class UserCart {
         this.details = new ArrayList<>();
     }
 
-    public UserCart(BigDecimal cartPrice, List<CartDetails> details) {
+    public UserCart(String cartId, BigDecimal cartPrice, List<CartDetails> details, String userId) {
+        this.cartId = cartId;
         this.cartPrice = cartPrice;
         this.details = details;
+        this.userId = userId;
     }
 }

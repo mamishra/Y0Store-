@@ -8,15 +8,24 @@ import java.util.List;
 public class UserCartDto {
 
 
-    private long cartId;
+    private String cartId;
     private BigDecimal cartPrice;
     private List<CartDetailsDto> details;
+    private String userId;
 
-    public long getCartId() {
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getCartId() {
         return cartId;
     }
 
-    public void setCartId(long cartId) {
+    public void setCartId(String cartId) {
         this.cartId = cartId;
     }
 
@@ -39,9 +48,10 @@ public class UserCartDto {
     @Override
     public String toString() {
         return "UserCartDto{" +
-                "cartId=" + cartId +
+                "cartId='" + cartId + '\'' +
                 ", cartPrice=" + cartPrice +
                 ", details=" + details +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 
@@ -49,8 +59,10 @@ public class UserCartDto {
         this.details = new ArrayList<>();
     }
 
-    public UserCartDto(BigDecimal cartPrice, List<CartDetailsDto> details) {
+    public UserCartDto(String cartId, BigDecimal cartPrice, List<CartDetailsDto> details, String userId) {
+        this.cartId = cartId;
         this.cartPrice = cartPrice;
         this.details = details;
+        this.userId = userId;
     }
 }

@@ -5,10 +5,6 @@ import com.coviam.YoStore.Cart.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 @Service
 public class CartServiceImpl implements CartService {
 
@@ -16,21 +12,18 @@ public class CartServiceImpl implements CartService {
     CartRepository repository;
 
     @Override
-    public UserCart viewCart(long cartId){
-        return repository.findOne(String.valueOf(cartId));
-    }
-
-    //TODO: other tho methods to be corrected
-
-    @Override
-    public boolean addToCart(String SKU) {
-        HashMap<Integer,String> li = new HashMap<>();
-        li.put(1, SKU);
-        repository.save(li);
+    public UserCart viewCart(String cartId){
+        return repository.findOne(cartId);
     }
 
     @Override
-    public boolean remove(long cartId, String SKU) {
-        return repository.delete(SKU);
+    public UserCart addToCart(UserCart userCart) {
+        return repository.insert(userCart);
+    }
+
+    @Override
+    public boolean remove(String userId) {
+        long lng = repository.deleteByUserId(userId);
+        return (lng==0)?false:true;
     }
 }
