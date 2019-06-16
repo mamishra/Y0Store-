@@ -3,26 +3,30 @@ package com.coviam.YoStore.Product.entity;
 import java.util.List;
 
 public class Products {
-    private String SKU;
+    private String sku;
     private double mrp;
     private String brand;
     private String imgurl;
     private List<ProductMerchants> merchants;
     private int quantity;
     private String category;
-    private ProductDetails productDetails;
+    private String  productDetails;
     private String productName;
 
-    public String getSKU() {
-        return SKU;
+    public String getsku() {
+        return sku;
     }
 
-    public void setSKU(String SKU) {
-        this.SKU = SKU;
+    public void setsku(String sku) {
+        this.sku = sku;
     }
 
     public double getMrp() {
         return mrp;
+    }
+
+    public List<ProductMerchants> getMerchants() {
+        return merchants;
     }
 
     public void setMrp(double mrp) {
@@ -45,8 +49,6 @@ public class Products {
         this.imgurl = imgurl;
     }
 
-
-
     public int getQuantity() {
         return quantity;
     }
@@ -67,11 +69,11 @@ public class Products {
         this.category = category;
     }
 
-    public ProductDetails getProductDetails() {
+    public String getProductDetails() {
         return productDetails;
     }
 
-    public void setProductDetails(ProductDetails productDetails) {
+    public void setProductDetails(String productDetails) {
         this.productDetails = productDetails;
     }
 
