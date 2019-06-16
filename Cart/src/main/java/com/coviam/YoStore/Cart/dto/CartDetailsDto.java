@@ -2,36 +2,51 @@ package com.coviam.YoStore.Cart.dto;
 
 public class CartDetailsDto {
 
-    private String SKU;
+    private String sku;
     private int quantity;
+    private String merchantId;
 
-    public CartDetailsDto(String SKU, int quantity) {
-        this.SKU = SKU;
-        this.quantity = quantity;
+    public CartDetailsDto() {
     }
 
-    public String getSKU() {
-        return SKU;
+    public CartDetailsDto(String sku, int quantity, String merchantId) {
+        this.sku = sku;
+        this.quantity = quantity;
+        this.merchantId = merchantId;
+    }
+
+    public String getMerchantId() {
+        return merchantId;
+    }
+
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public String getsku() {
+        return sku;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setSKU(String SKU) {
+    public void setsku(String sku) {
 
-        this.SKU = SKU;
+        this.sku = sku;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
+
     @Override
     public String toString() {
         return "CartDetailsDto{" +
-                "SKU='" + SKU + '\'' +
+                "sku='" + sku + '\'' +
                 ", quantity=" + quantity +
+                ", merchantId='" + merchantId + '\'' +
                 '}';
     }
 }

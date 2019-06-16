@@ -1,29 +1,39 @@
 package com.coviam.YoStore.Cart.entity;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document
 public class CartDetails {
 
-    private String SKU;
+    private String sku;
     private int quantity;
+    private String merchantId;
 
-    public CartDetails(String SKU, int quantity) {
-        this.SKU = SKU;
-        this.quantity = quantity;
+    public CartDetails() {
     }
 
-    public String getSKU() {
-        return SKU;
+    public CartDetails(String sku, int quantity, String merchantId) {
+        this.sku = sku;
+        this.quantity = quantity;
+        this.merchantId = merchantId;
+    }
+
+    public String getMerchantId() {
+        return merchantId;
+    }
+
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public String getsku() {
+        return sku;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setSKU(String SKU) {
+    public void setsku(String sku) {
 
-        this.SKU = SKU;
+        this.sku = sku;
     }
 
     public void setQuantity(int quantity) {
@@ -32,9 +42,10 @@ public class CartDetails {
 
     @Override
     public String toString() {
-        return "CartDetailsDto{" +
-                "SKU='" + SKU + '\'' +
+        return "CartDetails{" +
+                "sku='" + sku + '\'' +
                 ", quantity=" + quantity +
+                ", merchantId='" + merchantId + '\'' +
                 '}';
     }
 }

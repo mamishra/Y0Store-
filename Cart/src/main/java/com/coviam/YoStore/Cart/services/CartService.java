@@ -4,8 +4,8 @@ import com.coviam.YoStore.Cart.entity.UserCart;
 
 public interface CartService {
 
-    UserCart viewCart(long cartId);
-    boolean addToCart(String SKU);
-    boolean remove(long cartId, String SKU);
+    UserCart viewCart(String cartId);
+    UserCart addToCart(UserCart userCart);
+    boolean remove(String userId);
 
 }

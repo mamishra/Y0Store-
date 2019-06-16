@@ -17,7 +17,7 @@ public class CartController {
     CartService service;
 
     @RequestMapping(method = RequestMethod.GET, value = "/viewcart/{cartId}")
-    public ResponseEntity<?> viewCart(@PathVariable ("cartId") long cartId){
+    public ResponseEntity<?> viewCart(@PathVariable ("cartId") String cartId){
 
         UserCart cart = service.viewCart(cartId);
         UserCartDto cartDto = new UserCartDto();
@@ -29,7 +29,31 @@ public class CartController {
         return new ResponseEntity<UserCartDto>(cartDto, HttpStatus.OK);
     }
 
-    //TODO: other two methods
+    @RequestMapping(method = RequestMethod.POST, value = "/addToCart")
+    public ResponseEntity<?> addToCart(@RequestBody UserCartDto userCartDto){
+
+        UserCart userCart = new UserCart();
+        BeanUtils.copyProperties(userCartDto, userCart);
+        userCart = service.addToCart(userCart);
+        if(userCart == null){
+            return new ResponseEntity<String>("Not Added to Cart", HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<UserCart>(userCart, HttpStatus.OK);
+        }
+
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{userId}")
+    public ResponseEntity<?> delete(@PathVariable ("userId") String userId){
+        boolean bool = service.remove(userId);
+        if(bool == false){
+            return new ResponseEntity<String>("Not Deleted from cart", HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<String>("Deleted from cart", HttpStatus.OK);
+        }
+    }
 
 
 }
