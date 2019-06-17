@@ -29,19 +29,21 @@ public class ProductServicesImpl  implements ProductServices{
     }
 
     @Override
-    public Products updateProductQuantity(String merchantId, Products products, int quantBuy) {
+    public Products updateProductQuantity(String merchantId, Products products) {
         Products prod = products;
-        List<ProductMerchants> merchantsList = prod.getMerchants();
-        merchantsList.forEach((li)->{
+        String localSku = prod.getsku();
+        Products product = productRepository.findOne(localSku);
+        List<ProductMerchants> productMerchantsList = product.getMerchants();
+        productMerchantsList.forEach((li)->{
             if (li.getMerchantId().equals(merchantId)){
                 int temp = li.getQuantity();
-                temp -= quantBuy;
+                temp--;
                 li.setQuantity(temp);
             }
         });
-        int quantity = prod.getQuantity();
-        quantity -= quantBuy;
-        prod.setQuantity(quantity);
-        return productRepository.save(prod);
+        int quantity = product.getQuantity();
+        quantity--;
+        product.setQuantity(quantity);
+        return productRepository.save(product);
     }
 }

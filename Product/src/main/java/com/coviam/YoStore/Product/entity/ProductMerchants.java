@@ -19,4 +19,20 @@ public class ProductMerchants {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public ProductMerchants() {
+    }
+
+    public ProductMerchants(String merchantId, int quantity) {
+        this.merchantId = merchantId;
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductMerchants{" +
+                "merchantId='" + merchantId + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
