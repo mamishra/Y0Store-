@@ -44,7 +44,7 @@ public class UserController {
         Users user=new Users();
         BeanUtils.copyProperties(usersDTO,user);
         Users user1 = usersService.findByUserName(usersDTO.getUserName());
-        Users users=new Users();
+        Users users = new Users();
         if(user1==null){
             BeanUtils.copyProperties(usersDTO,users);
             Users userscreated = usersService.save(users);
