@@ -1,13 +1,22 @@
 package com.coviam.YoStore.Product.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import java.util.ArrayList;
 import java.util.List;
 
+@Document
 public class Products {
+    @Id
     private String sku;
+
+    @Field
     private double mrp;
     private String brand;
     private String imgurl;
-    private List<ProductMerchants> merchants;
+    private List<ProductMerchants> productMerchants;
     private int quantity;
     private String category;
     private String  productDetails;
@@ -26,7 +35,7 @@ public class Products {
     }
 
     public List<ProductMerchants> getMerchants() {
-        return merchants;
+        return productMerchants;
     }
 
     public void setMrp(double mrp) {
@@ -57,8 +66,8 @@ public class Products {
         this.quantity = quantity;
     }
 
-    public void setMerchants(List<ProductMerchants> merchants) {
-        this.merchants = merchants;
+    public void setMerchants(List<ProductMerchants> productMerchants) {
+        this.productMerchants = productMerchants;
     }
 
     public String getCategory() {
@@ -83,5 +92,36 @@ public class Products {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public Products() {
+        this.productMerchants = new ArrayList<>();
+    }
+
+    public Products(String sku, double mrp, String brand, String imgurl, List<ProductMerchants> productMerchants, int quantity, String category, String productDetails, String productName) {
+        this.sku = sku;
+        this.mrp = mrp;
+        this.brand = brand;
+        this.imgurl = imgurl;
+        this.productMerchants = productMerchants;
+        this.quantity = quantity;
+        this.category = category;
+        this.productDetails = productDetails;
+        this.productName = productName;
+    }
+
+    @Override
+    public String toString() {
+        return "Products{" +
+                "sku='" + sku + '\'' +
+                ", mrp=" + mrp +
+                ", brand='" + brand + '\'' +
+                ", imgurl='" + imgurl + '\'' +
+                ", productMerchants=" + productMerchants +
+                ", quantity=" + quantity +
+                ", category='" + category + '\'' +
+                ", productDetails='" + productDetails + '\'' +
+                ", productName='" + productName + '\'' +
+                '}';
     }
 }

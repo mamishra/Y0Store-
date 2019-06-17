@@ -1,7 +1,6 @@
 package com.coviam.YoStore.Product.dto;
 
-import com.coviam.YoStore.Product.entity.ProductMerchants;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsDto {
@@ -10,7 +9,7 @@ public class ProductsDto {
     private double mrp;
     private String brand;
     private String imgurl;
-    private List<ProductMerchants>  productMerchants;
+    private List<ProductMerchantsDto> productMerchants;
     private int quantity;
     private String category;
     private String  productDetails;
@@ -24,11 +23,11 @@ public class ProductsDto {
         this.productDetails = productDetails;
     }
 
-    public List<ProductMerchants> getProductMerchants() {
+    public List<ProductMerchantsDto> getProductMerchants() {
         return productMerchants;
     }
 
-    public void setProductMerchants(List<ProductMerchants> productMerchants) {
+    public void setProductMerchants(List<ProductMerchantsDto> productMerchants) {
         this.productMerchants = productMerchants;
     }
 
@@ -88,5 +87,36 @@ public class ProductsDto {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public ProductsDto() {
+        this.productMerchants = new ArrayList<>();
+    }
+
+    public ProductsDto(String sku, double mrp, String brand, String imgurl, List<ProductMerchantsDto> productMerchants, int quantity, String category, String productDetails, String productName) {
+        this.sku = sku;
+        this.mrp = mrp;
+        this.brand = brand;
+        this.imgurl = imgurl;
+        this.productMerchants = productMerchants;
+        this.quantity = quantity;
+        this.category = category;
+        this.productDetails = productDetails;
+        this.productName = productName;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductsDto{" +
+                "sku='" + sku + '\'' +
+                ", mrp=" + mrp +
+                ", brand='" + brand + '\'' +
+                ", imgurl='" + imgurl + '\'' +
+                ", productMerchantsDto=" + productMerchants +
+                ", quantity=" + quantity +
+                ", category='" + category + '\'' +
+                ", productDetails='" + productDetails + '\'' +
+                ", productName='" + productName + '\'' +
+                '}';
     }
 }
