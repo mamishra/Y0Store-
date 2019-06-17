@@ -19,17 +19,15 @@ public class Merchants {
     private int quantitySold;
     private List<MerchantProducts> merchantProducts;
 
-    public Merchants(){
-        this.merchantProducts=new ArrayList<>();
-    }
+    public Merchants() {this.merchantProducts = new ArrayList<>();}
 
-    public Merchants(String merchantID, String category, int rating, List<MerchantProducts> products, int quantitySold)
+    public Merchants(String merchantID, String category, int rating, List<MerchantProducts> merchantProducts, int quantitySold)
      {
          this.merchantID = merchantID;
          this.category=category;
          this.rating=rating;
          this.quantitySold = quantitySold;
-         this.merchantProducts=products;
+         this.merchantProducts=merchantProducts;
 
      }
 
@@ -54,7 +52,9 @@ public class Merchants {
         return rating;
     }
 
-
+    public List<MerchantProducts> getMerchantProducts() {
+        return merchantProducts;
+    }
 
     public List<MerchantProducts> getProducts() {
         return merchantProducts;

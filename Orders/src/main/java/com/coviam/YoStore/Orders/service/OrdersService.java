@@ -8,4 +8,5 @@ public interface OrdersService {
     Orders insertOrders(Orders orders);
     List<Orders> findByUserId(String userId);
     List<Orders> findAll();
+    List<Orders> findOrderProducts(String userId, String productSku);
 }

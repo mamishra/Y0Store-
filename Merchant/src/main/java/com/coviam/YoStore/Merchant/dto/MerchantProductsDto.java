@@ -6,6 +6,15 @@ public class MerchantProductsDto {
     private int quantity;
     private String offer;
 
+    public MerchantProductsDto() { }
+
+    public MerchantProductsDto(String productId, int discount, int quantity, String offer) {
+        this.productId = productId;
+        this.discount = discount;
+        this.quantity = quantity;
+        this.offer = offer;
+    }
+
     public String getProductId() {
         return productId;
     }

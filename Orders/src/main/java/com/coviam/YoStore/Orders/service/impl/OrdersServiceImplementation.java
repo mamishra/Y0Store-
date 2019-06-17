@@ -31,4 +31,9 @@ public class OrdersServiceImplementation implements OrdersService {
         return orders;
     }
 
+    @Override
+    public List<Orders> findOrderProducts(String userId, String productSku){
+        List<Orders> merchants = this.ordersRepository.findByUserIdAndOrderDetails(userId, productSku);
+        return merchants;
+    }
 }
