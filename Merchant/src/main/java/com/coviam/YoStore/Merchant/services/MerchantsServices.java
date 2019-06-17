@@ -8,5 +8,6 @@ public interface MerchantsServices {
     Merchants insertMerchants(Merchants merchants);
     List<Merchants> findAll();
     Merchants findOne(String merchantId);
+    List<Merchants> findProductMerchants(String merchantId, String productSku);
 
 }

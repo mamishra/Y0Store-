@@ -5,7 +5,7 @@ public class OrderDetailsDto {
     private String merchantId;
     private int quantity;
 
-    protected OrderDetailsDto() {}
+    public OrderDetailsDto() {}
 
     public OrderDetailsDto(String productSKU, String merchantId, int quantity) {
         this.productSKU = productSKU;

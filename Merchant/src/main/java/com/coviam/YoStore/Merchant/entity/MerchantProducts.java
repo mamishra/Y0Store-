@@ -7,6 +7,15 @@ public class MerchantProducts {
     private int quantity;
     private String offer;
 
+    public MerchantProducts() {}
+
+    public MerchantProducts(String productId, int discount, int quantity, String offer) {
+        this.productId = productId;
+        this.discount = discount;
+        this.quantity = quantity;
+        this.offer = offer;
+    }
+
     public String getProductId() {
         return productId;
     }

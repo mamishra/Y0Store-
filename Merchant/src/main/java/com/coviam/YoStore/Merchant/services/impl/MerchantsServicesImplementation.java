@@ -17,7 +17,7 @@ public class MerchantsServicesImplementation implements MerchantsServices {
 
     @Override
     public Merchants insertMerchants(Merchants merchants) {
-        return merchantsRepository.insert(merchants);
+        return merchantsRepository.save(merchants);
     }
 
     @Override
@@ -28,6 +28,12 @@ public class MerchantsServicesImplementation implements MerchantsServices {
     @Override
     public List<Merchants> findAll() {
         List<Merchants> merchants = this.merchantsRepository.findAll();
+        return merchants;
+    }
+
+    @Override
+    public List<Merchants> findProductMerchants(String merchantId, String productSku){
+        List<Merchants> merchants = this.merchantsRepository.findByMerchantIDAndMerchantProducts(merchantId, productSku);
         return merchants;
     }
 

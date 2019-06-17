@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface OrdersRepository extends MongoRepository<Orders, String> {
     List<Orders> findByUserId(String userId);
+
+    List<Orders> findByUserIdAndOrderDetails(String userId, String productSku);
+
 }

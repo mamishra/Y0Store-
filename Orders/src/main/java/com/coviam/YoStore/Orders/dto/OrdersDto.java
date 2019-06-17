@@ -1,7 +1,9 @@
 package com.coviam.YoStore.Orders.dto;
 
 import com.coviam.YoStore.Orders.entity.OrderDetails;
+import com.coviam.YoStore.Orders.dto.OrderDetailsDto;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,8 +11,20 @@ public class OrdersDto {
     private String orderId;
     private BigDecimal orderPrice;
     private String userId;
-    private List<OrderDetails> orderDetails;
+    private List<OrderDetailsDto> orderDetails;
     private Date date;
+
+    public OrdersDto() {
+        this.orderDetails = new ArrayList<>();
+    }
+
+    public OrdersDto(String orderId, BigDecimal orderPrice, String userId, Date date, List<OrderDetailsDto> orderDetails) {
+        this.orderId = orderId;
+        this.orderPrice = orderPrice;
+        this.userId = userId;
+        this.date = date;
+        this.orderDetails = orderDetails;
+    }
 
     public String getOrderId() {
         return orderId;
@@ -36,11 +50,11 @@ public class OrdersDto {
         this.userId = userId;
     }
 
-    public List<OrderDetails> getOrderDetails() {
+    public List<OrderDetailsDto> getOrderDetails() {
         return orderDetails;
     }
 
-    public void setOrderDetails(List<OrderDetails> orderDetails) {
+    public void setOrderDetails(List<OrderDetailsDto> orderDetails) {
         this.orderDetails = orderDetails;
     }
 

@@ -54,5 +54,22 @@ public class OrdersController {
 
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/getOrderProducts/{productSKU}")
+    public ResponseEntity<List<Orders>> getProductMerchants(@PathVariable("productSKU") String productSKU)
+    {
+        String[] merchantIdsArray = productSKU.split("_");
+        String userId = merchantIdsArray[0];
+        String productSku = merchantIdsArray[1];
+        List<Orders> orders=ordersService.findOrderProducts(userId, productSku);
+        OrdersDto merchantsDto=new OrdersDto();
+        if(orders==null)
+        {
+            return null;
+        }
+        //BeanUtils.copyProperties(orders,ordersDto);
+        return new ResponseEntity<List<Orders>>(orders, HttpStatus.OK);
+
+    }
+
 
 }

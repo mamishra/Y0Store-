@@ -1,17 +1,28 @@
 package com.coviam.YoStore.Merchant.dto;
 
-import com.coviam.YoStore.Merchant.entity.MerchantProducts;
+import com.coviam.YoStore.Merchant.dto.MerchantProductsDto;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MerchantsDto {
 
 
-    private String MerchantID;
-
+    private String merchantID;
     private String category;
-    private  int rating;
+    private int rating;
     private int quantitySold;
-    private List<MerchantProducts> merchantProducts;
+    private List<MerchantProductsDto> merchantProducts;
+
+    public MerchantsDto() {this.merchantProducts = new ArrayList<>();}
+
+    public MerchantsDto(String merchantID, String category, int rating, int quantitySold, List<MerchantProductsDto> merchantProductsDto) {
+        this.merchantID = merchantID;
+        this.category = category;
+        this.rating = rating;
+        this.quantitySold = quantitySold;
+        this.merchantProducts = merchantProductsDto;
+    }
 
     public int getQuantitySold() {
         return quantitySold;
@@ -22,11 +33,11 @@ public class MerchantsDto {
     }
 
     public String getMerchantID() {
-        return MerchantID;
+        return merchantID;
     }
 
     public void setMerchantID(String merchantID) {
-        MerchantID = merchantID;
+        merchantID = merchantID;
     }
 
     public String getCategory() {
@@ -45,12 +56,11 @@ public class MerchantsDto {
         this.rating = rating;
     }
 
-    public List<MerchantProducts> getProducts() {
+    public List<MerchantProductsDto> getMerchantProductsDto() {
         return merchantProducts;
     }
 
-    public void setProducts(List<MerchantProducts> products) {
-        this.merchantProducts = products;
+    public void setMerchantProductsDto(List<MerchantProductsDto> merchantProductsDto) {
+        this.merchantProducts = merchantProductsDto;
     }
-
 }
