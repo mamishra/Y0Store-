@@ -12,5 +12,5 @@ public interface ProductServices {
 
     Iterable<Products> findAllProducts();
 
-    Products updateProductQuantity(String merchantId, Products products, int quantBuy);
+    Products updateProductQuantity(String merchantId, Products products);
 }
