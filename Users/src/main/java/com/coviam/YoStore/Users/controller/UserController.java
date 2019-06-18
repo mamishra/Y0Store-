@@ -49,14 +49,15 @@ public class UserController {
             BeanUtils.copyProperties(usersDTO,users);
             Users userscreated = usersService.save(users);
 
-            return new ResponseEntity<String>("account with username: "+userscreated.getUserName()+" created",HttpStatus.OK);
+            return new ResponseEntity<>("Congratulations "+userscreated.getUserName()+" Happy Shopping",HttpStatus.OK);
         }else{
 
-                return new ResponseEntity<String>("user with this name already exists", HttpStatus.OK);
+                return new ResponseEntity<>("username with same name already created!!!", HttpStatus.OK);
         }
 
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping(method = RequestMethod.POST,value = "/login")
     public ResponseEntity<?> login(@RequestBody UsersDTO usersDTO){
         Users user=new Users();
@@ -64,12 +65,12 @@ public class UserController {
         Users user1 = usersService.findByUserName(usersDTO.getUserName());
 
         if(user1==null){
-            return new ResponseEntity<String>("No record found with this username...", HttpStatus.OK); //response is a String type
+            return new ResponseEntity<String>("please enter valid username", HttpStatus.OK); //response is a String type
         }else{
             if(user1.getPassword().equals(usersDTO.getPassword())){
-                return new ResponseEntity<String>("login accessed", HttpStatus.OK);
+                return new ResponseEntity<>("ok",HttpStatus.OK);
             }else{
-                return new ResponseEntity<String>("wrong credentials!!!", HttpStatus.OK);
+                return new ResponseEntity<>("wrong credentials!!!", HttpStatus.OK);
             }
 
         }
