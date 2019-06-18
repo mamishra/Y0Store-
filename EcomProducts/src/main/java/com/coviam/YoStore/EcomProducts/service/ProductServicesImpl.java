@@ -47,13 +47,10 @@ public class ProductServicesImpl implements ProductServices {
                 li.setQuantity(temp);
             }
         });
-        System.out.println(productMerchantsList);
         product.setProductMerchants(productMerchantsList);
-        System.out.println(product);
         int quantity = product.getQuantity();
         quantity--;
         product.setQuantity(quantity);
-        System.out.println(product);
         return prodRepository.save(product);
     }
 }
