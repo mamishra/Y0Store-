@@ -11,10 +11,10 @@ import java.util.List;
 @Document
 public class UserCart {
 
-    @Id
+    @Field
     private String cartId;
 
-    @Field
+
     private BigDecimal cartPrice;
     private List<CartDetails> details;
     private String userId;
