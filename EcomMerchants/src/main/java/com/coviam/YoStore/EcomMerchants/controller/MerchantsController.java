@@ -4,6 +4,7 @@ import com.coviam.YoStore.EcomMerchants.dto.MerchantProductsDto;
 import com.coviam.YoStore.EcomMerchants.dto.MerchantsDto;
 import com.coviam.YoStore.EcomMerchants.entity.MerchantProducts;
 import com.coviam.YoStore.EcomMerchants.entity.Merchants;
+import com.coviam.YoStore.EcomMerchants.repository.MerchantsRepository;
 import com.coviam.YoStore.EcomMerchants.service.MerchantsService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/merchants")
+@CrossOrigin("*")
 public class MerchantsController {
 
     @Autowired
     MerchantsService merchantsService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/putMerchants")
-    public ResponseEntity<?> putMerchants(@RequestBody MerchantsDto merchantsDto)
+    @Autowired
+    MerchantsRepository merchantsRepository;
+
+    @RequestMapping(method = RequestMethod.POST, value = "/putMerchant")
+    public ResponseEntity<?> putMerchant(@RequestBody MerchantsDto merchantsDto)
     {
         Merchants merchants = new Merchants();
         BeanUtils.copyProperties(merchantsDto, merchants);
@@ -30,35 +35,57 @@ public class MerchantsController {
         return new ResponseEntity<Merchants>(merchants, HttpStatus.OK);
     }
 
+    @RequestMapping(method = RequestMethod.POST, value = "/putMerchants")
+    public ResponseEntity<?> putMerchants(@RequestBody List<Merchants> merchants)
+    {
+        //Merchants merchants = new Merchants();
+        //BeanUtils.copyProperties(merchantsDto, merchants);
+        merchantsRepository.insert(merchants);
+        return new ResponseEntity<String>("Entries Ok.", HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/getMerchantsByProductSku/{array}")
     public ResponseEntity<?> getMerchantsByProductSku(@PathVariable("array") String array)
     {
         String[] arr = array.split("_");
+        System.out.println(arr);
         String productSku = arr[0];
         String merchantId = arr[1];
-        Merchants merchant = merchantsService.findByMerchantId(merchantId);
-        if(merchant==null)
-        {
-            return new ResponseEntity<String>("Merchant not found", HttpStatus.OK);
+        List<MerchantsDto> merchantsList = new ArrayList<>();
+        for(int i = 1; i < arr.length; i++) {
+            Merchants merchant = merchantsService.findByMerchantId(arr[i]);
+            System.out.println(arr[i]);
+            if (merchant == null) {
+                return new ResponseEntity<String>("Merchant not found", HttpStatus.OK);
+            }
+            System.out.println(merchant);
+            MerchantsDto merchantDto2 = new MerchantsDto();
+            MerchantsDto merchantDto = new MerchantsDto();
+            BeanUtils.copyProperties(merchant, merchantDto);
+            merchantDto2.setCategory(merchantDto.getCategory());
+            merchantDto2.setMerchantID(merchantDto.getMerchantID());
+            merchantDto2.setQuantitySold(merchantDto.getQuantitySold());
+            merchantDto2.setRating(merchantDto.getRating());
+            List<MerchantProductsDto> merchantProductsDto = merchantDto.getMerchantProducts();
+            List<MerchantProductsDto> mProdList = new ArrayList<>();
+            System.out.println(merchantDto2);
+            for (int j = 0; j < merchantProductsDto.size(); j++) {
+                MerchantProductsDto merchantProductsDto1 = new MerchantProductsDto();
+                BeanUtils.copyProperties(merchantProductsDto.get(j), merchantProductsDto1);
+                if (merchantProductsDto1 != null && merchantProductsDto1.getProductId().equals(productSku) && merchantProductsDto1.getQuantity() != 0) {
+                    mProdList.add(merchantProductsDto1);
+                }
+                else if (merchantProductsDto1 != null && merchantProductsDto1.getProductId().equals(productSku) && merchantProductsDto1.getQuantity() == 0){
+                    continue;
+                }
+            }
+            System.out.println(mProdList);
+            merchantDto2.setMerchantProducts(mProdList);
+            System.out.println(merchantDto2);
+            merchantsList.add(merchantDto2);
+            System.out.println(merchantsList);
         }
-        MerchantsDto merchantDto=new MerchantsDto();
-        BeanUtils.copyProperties(merchant,merchantDto);
-        MerchantsDto merchantDto2=new MerchantsDto();
-        merchantDto2.setCategory(merchantDto.getCategory());
-        merchantDto2.setMerchantID(merchantDto.getMerchantID());
-        merchantDto2.setQuantitySold(merchantDto.getQuantitySold());
-        merchantDto2.setRating(merchantDto.getRating());
-        List<MerchantProductsDto> merchantProductsDto = merchantDto.getMerchantProducts();
-        List<MerchantProductsDto> mProdList = new ArrayList<>();
-        for(int i=0;i<merchantProductsDto.size();i++)
-        {
-            MerchantProductsDto merchantProductsDto1=new MerchantProductsDto();
-            BeanUtils.copyProperties(merchantProductsDto.get(i),merchantProductsDto1);
-            if (merchantProductsDto1!=null && merchantProductsDto1.getProductId().equals(productSku) && merchantProductsDto1.getQuantity()!=0){
-                mProdList.add(merchantProductsDto1);
-        }}
-        merchantDto2.setMerchantProducts(mProdList);
-        return new ResponseEntity<MerchantsDto>(merchantDto2, HttpStatus.OK);
+        return new ResponseEntity<List<MerchantsDto>>(merchantsList, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/updateMerchantQuantity/{array}")
