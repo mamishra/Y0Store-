@@ -20,6 +20,11 @@ public class MerchantsServiceImplementation implements MerchantsService {
     }
 
     @Override
+    public Merchants updateMerchant(Merchants merchants) {
+        return merchantsRepository.save(merchants);
+    }
+
+    @Override
     public Merchants findOne(String merchantId){
         return merchantsRepository.findOne(merchantId);
     }

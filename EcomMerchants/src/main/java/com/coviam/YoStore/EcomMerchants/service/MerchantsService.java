@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface MerchantsService {
     Merchants insertMerchants(Merchants merchants);
+    Merchants updateMerchant(Merchants merchants);
     List<Merchants> findAll();
     Merchants findOne(String merchantId);
     Merchants findByMerchantId(String merchantId);
