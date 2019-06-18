@@ -9,6 +9,7 @@ import java.util.List;
 
 @Document
 public class Products {
+
     @Id
     private String sku;
     @Field

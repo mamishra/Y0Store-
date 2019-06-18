@@ -23,7 +23,7 @@ public class CartController {
         UserCartDto cartDto = new UserCartDto();
 
         if(cart == null){
-            return new ResponseEntity<String>("Not Found", HttpStatus.OK);
+            return new ResponseEntity<String>("Nothing in your Cart", HttpStatus.OK);
         }
         BeanUtils.copyProperties(cart, cartDto);
         return new ResponseEntity<UserCartDto>(cartDto, HttpStatus.OK);

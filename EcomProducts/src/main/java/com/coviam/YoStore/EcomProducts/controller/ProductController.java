@@ -4,6 +4,7 @@ import com.coviam.YoStore.EcomProducts.dto.ProductDto;
 import com.coviam.YoStore.EcomProducts.dto.ProductMerchantDto;
 import com.coviam.YoStore.EcomProducts.entity.ProductMerchant;
 import com.coviam.YoStore.EcomProducts.entity.Products;
+import com.coviam.YoStore.EcomProducts.repository.ProductRepository;
 import com.coviam.YoStore.EcomProducts.service.ProductServices;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "*")
 public class ProductController {
     @Autowired
     ProductServices productServices;
+
+    @Autowired
+    ProductRepository prod;
 
     @RequestMapping(method = RequestMethod.GET,value = "/getProductById/{sku}")
     public ResponseEntity<?> getProductById(@PathVariable("sku") String sku){
@@ -68,6 +72,13 @@ public class ProductController {
     public ResponseEntity<Iterable<Products>> findAll(){
         Iterable<Products> usersList = productServices.findAllProducts();
         return new ResponseEntity<Iterable<Products>>(usersList,HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/saveAll")
+    public ResponseEntity<?> putProducts(@RequestBody List<Products> productsList)
+    {
+        prod.insert(productsList);
+        return new ResponseEntity<String>("Entered All",HttpStatus.OK);
     }
 
 }

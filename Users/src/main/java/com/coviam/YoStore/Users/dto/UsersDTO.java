@@ -9,13 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 public class UsersDTO {
-    public static final String TABLE_NAME = "USERS";
-    private static final String ID_COLUMN = "ID";
 
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(name = UsersDTO.ID_COLUMN)
+
     private String userId;
     private String userName;
     private String userEmail;
