@@ -1,6 +1,7 @@
 package com.coviam.YoStore.Cart.controller;
 
 import com.coviam.YoStore.Cart.dto.UserCartDto;
+import com.coviam.YoStore.Cart.entity.CartDetails;
 import com.coviam.YoStore.Cart.entity.UserCart;
 import com.coviam.YoStore.Cart.services.CartService;
 import org.springframework.beans.BeanUtils;
@@ -11,19 +12,20 @@ import org.springframework.http.HttpStatus;
 
 @RestController
 @RequestMapping(value="/cart")
+@CrossOrigin("*")
 public class CartController {
 
     @Autowired
     CartService service;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/viewcart/{cartId}")
-    public ResponseEntity<?> viewCart(@PathVariable ("cartId") String cartId){
+    @RequestMapping(method = RequestMethod.GET, value = "/viewcart")
+    public ResponseEntity<?> viewCart(@RequestParam ("userId") String userId){
 
-        UserCart cart = service.viewCart(cartId);
+        UserCart cart = service.viewCart(userId);
         UserCartDto cartDto = new UserCartDto();
 
         if(cart == null){
-            return new ResponseEntity<String>("Nothing in your Cart", HttpStatus.OK);
+            return new ResponseEntity<Boolean>(false, HttpStatus.OK);
         }
         BeanUtils.copyProperties(cart, cartDto);
         return new ResponseEntity<UserCartDto>(cartDto, HttpStatus.OK);
@@ -44,14 +46,26 @@ public class CartController {
 
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{userId}")
-    public ResponseEntity<?> delete(@PathVariable ("userId") String userId){
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete")
+    public ResponseEntity<?> delete(@RequestParam ("userId") String userId){
         boolean bool = service.remove(userId);
         if(bool == false){
             return new ResponseEntity<String>("Not Deleted from cart", HttpStatus.OK);
         }
         else {
             return new ResponseEntity<String>("Deleted from cart", HttpStatus.OK);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.POST,value = "/updateCart")
+    public ResponseEntity<?> updateCart(@RequestBody CartDetails cartDetails, @RequestParam("userId") String userId)
+    {
+        boolean result = service.updateCart(cartDetails,userId);
+        if(result == false){
+            return new ResponseEntity<String>("Not Updated in cart", HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<String>("Updated in cart", HttpStatus.OK);
         }
     }
 

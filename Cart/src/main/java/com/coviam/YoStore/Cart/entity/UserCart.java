@@ -11,13 +11,15 @@ import java.util.List;
 @Document
 public class UserCart {
 
+    @Id
+    private String userId;
     @Field
     private String cartId;
 
 
     private BigDecimal cartPrice;
     private List<CartDetails> details;
-    private String userId;
+
 
     public String getUserId() {
         return userId;

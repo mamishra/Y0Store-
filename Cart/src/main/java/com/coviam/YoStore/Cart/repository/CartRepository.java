@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CartRepository extends MongoRepository<UserCart, String> {
     Long deleteByUserId(String userId);
+    UserCart findByUserId(String userId);
+    //boolean insert(UserCart userCart);
+    //boolean update(UserCart userCart);
+
 }

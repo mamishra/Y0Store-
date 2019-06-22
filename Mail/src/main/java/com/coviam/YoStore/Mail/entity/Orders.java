@@ -13,11 +13,11 @@ public class Orders {
     private BigDecimal orderPrice;
     private String userId;
     private List<OrderDetails> orderDetails;
-    private Date date;
+    private String date;
 
     public Orders() {this.orderDetails = new ArrayList<>();}
 
-    public Orders(String orderId, BigDecimal orderPrice, String userId, Date date, List<OrderDetails> orderDetails) {
+    public Orders(String orderId, BigDecimal orderPrice, String userId, String date, List<OrderDetails> orderDetails) {
         this.orderId = orderId;
         this.orderPrice = orderPrice;
         this.userId = userId;
@@ -49,11 +49,11 @@ public class Orders {
         this.userId = userId;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
