@@ -10,18 +10,19 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin("*")
 public class MailController {
     @Autowired
     private JavaMailSender sender;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/sendMail/{emailId}")
-    public String sendMail(@RequestBody Orders order, @PathVariable("emailId") String emailId) {
+    @RequestMapping(method = RequestMethod.POST, value = "/sendMail")
+    public String sendMail(@RequestBody Orders order, @RequestParam("emailId") String emailId) {
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
         try {
-            helper.setTo(emailId+".com");
-            helper.setText("                                Greetings : Thanks for shopping with us !!!" +
+            helper.setTo(emailId);
+            helper.setText("                                Greetings : Thanks for shopping with us !!!" +"\n"+
                     "                                =======================================================" +
                     "\n" + "                                " + order + "\n" +
                     "                                =======================================================");
